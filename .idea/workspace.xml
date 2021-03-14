@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="88ddfea4-5be1-4ac8-a9ec-a3a7fdacb77a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/AgeInMinutes/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AgeInMinutes/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AgeInMinutes/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AgeInMinutes/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AgeInMinutes/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AgeInMinutes/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AgeInMinutes/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AgeInMinutes/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tutorials/app/src/main/java/com/example/helloworld/KotlinBasics.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1phPuaZNzYNNxYn9MKJiNkmajXP" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="88ddfea4-5be1-4ac8-a9ec-a3a7fdacb77a" name="Default Changelist" comment="" />
+      <created>1615632571347</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1615632571347</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="805" y="311" key="FileChooserDialogImpl" timestamp="1615632662642">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="805" y="311" key="FileChooserDialogImpl/-1440.-284.1152.2008/0.0.2048.1112@0.0.2048.1112" timestamp="1615632662642" />
+  </component>
+</project>
