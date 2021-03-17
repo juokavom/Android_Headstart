@@ -48,6 +48,10 @@ class MainActivity : AppCompatActivity() {
                 requestStoragePermission()
             }
         }
+
+        binding.ibUndo.setOnClickListener {
+            binding.drawingView.onClickUndo()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -158,4 +162,5 @@ class MainActivity : AppCompatActivity() {
         private const val STORAGE_PERMISION_CODE = 1
         private const val GALLERY = 2
     }
+
 }
