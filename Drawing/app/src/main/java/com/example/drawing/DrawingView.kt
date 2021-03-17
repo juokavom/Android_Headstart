@@ -64,7 +64,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
                 mDrawPath!!.brushThickness = mBrushSize
 
                 mDrawPath!!.reset()
-                mDrawPath!!.moveTo(touchX!!, touchX!!)
+                mDrawPath!!.moveTo(touchX!!, touchY!!)
             }
             MotionEvent.ACTION_MOVE -> {
                 mDrawPath!!.lineTo(touchX!!, touchY!!)
