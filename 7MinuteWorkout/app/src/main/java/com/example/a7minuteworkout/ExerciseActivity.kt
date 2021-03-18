@@ -27,9 +27,8 @@ class ExerciseActivity : AppCompatActivity() {
         binding.toolbarExerciseActivity.setNavigationOnClickListener {
             onBackPressed()
         }
-        setupRestView()
-
         exerciseList = Constants.defaultExerciseList()
+        setupRestView()
     }
 
     override fun onDestroy() {
@@ -60,9 +59,9 @@ class ExerciseActivity : AppCompatActivity() {
         binding.progressBarExercise.progress = exerciseProgress
         exerciseTimer = object : CountDownTimer(4000, 1000) {
             override fun onFinish() {
-                if(currentExercisePosition < exerciseList?.size!! - 1){
+                if (currentExercisePosition < exerciseList?.size!! - 1) {
                     setupRestView()
-                }else{
+                } else {
                     Toast.makeText(
                         this@ExerciseActivity,
                         "Congratulations! You have completed the 7 minutes workout!",
@@ -87,6 +86,8 @@ class ExerciseActivity : AppCompatActivity() {
             restTimer!!.cancel()
             restProgress = 0
         }
+        binding.tvUpcomingExerciseName.text = exerciseList!![currentExercisePosition + 1].getName()
+
         setRestProgressBar()
     }
 
