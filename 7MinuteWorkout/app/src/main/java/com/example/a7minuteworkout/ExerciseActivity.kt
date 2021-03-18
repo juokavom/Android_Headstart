@@ -7,7 +7,9 @@ import android.os.CountDownTimer
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a7minuteworkout.databinding.ActivityExerciseBinding
 import java.lang.Exception
 import java.util.*
@@ -26,6 +28,8 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var tts: TextToSpeech? = null
     private var player: MediaPlayer? = null
 
+    private var exerciseAdapter: ExerciseStatusAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityExerciseBinding.inflate(layoutInflater)
@@ -41,6 +45,8 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         exerciseList = Constants.defaultExerciseList()
         setupRestView()
+
+        setupExerciseStatusRecyclerView()
     }
 
     override fun onDestroy() {
@@ -52,11 +58,11 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             exerciseTimer!!.cancel()
             exerciseProgress = 0
         }
-        if(tts != null){
+        if (tts != null) {
             tts!!.stop()
             tts!!.shutdown()
         }
-        if(player != null){
+        if (player != null) {
             player!!.stop()
         }
         super.onDestroy()
@@ -67,6 +73,8 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         restTimer = object : CountDownTimer(2000, 1000) {
             override fun onFinish() {
                 currentExercisePosition++
+                exerciseList!![currentExercisePosition].setIsSelected(true)
+                exerciseAdapter!!.notifyDataSetChanged()
                 setupExerciseView()
             }
 
@@ -83,6 +91,9 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         exerciseTimer = object : CountDownTimer(4000, 1000) {
             override fun onFinish() {
                 if (currentExercisePosition < exerciseList?.size!! - 1) {
+                    exerciseList!![currentExercisePosition].setIsSelected(false)
+                    exerciseList!![currentExercisePosition].setIsCompleted(true)
+                    exerciseAdapter!!.notifyDataSetChanged()
                     setupRestView()
                 } else {
                     Toast.makeText(
@@ -106,7 +117,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             player = MediaPlayer.create(applicationContext, R.raw.press_start)
             player!!.isLooping = false
             player!!.start()
-        }catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
 
@@ -139,17 +150,24 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     override fun onInit(status: Int) {
-        if(status == TextToSpeech.SUCCESS){
+        if (status == TextToSpeech.SUCCESS) {
             val result = tts!!.setLanguage(Locale.US)
-            if(result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED){
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TTS", "The Language specified is not supported!")
             }
-        }else{
+        } else {
             Log.e("TTS", "Initializations Failed!")
         }
     }
 
-    private fun speakOut(text: String){
+    private fun speakOut(text: String) {
         tts!!.speak(text, TextToSpeech.QUEUE_FLUSH, null, "")
+    }
+
+    private fun setupExerciseStatusRecyclerView() {
+        binding.rvExerciseStatus.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        exerciseAdapter = ExerciseStatusAdapter(exerciseList!!, this)
+        binding.rvExerciseStatus.adapter = exerciseAdapter
     }
 }
