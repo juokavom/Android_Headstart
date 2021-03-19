@@ -5,6 +5,7 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -74,16 +75,34 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                 pictureDialog.setItems(pictureDialogItems) { _, which ->
                     when (which) {
                         0 -> choosePhotoFromGallery()
-                        1 -> Toast.makeText(
-                            this@AddHappyPlaceActivity,
-                            "Camera selection coming soon...",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        1 -> takePhotoFromCamera()
                     }
                 }
                 pictureDialog.show()
             }
         }
+    }
+
+    private fun takePhotoFromCamera(){
+        Dexter.withActivity(this).withPermissions(
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA
+        )
+            .withListener(object : MultiplePermissionsListener {
+                override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
+                    if (report!!.areAllPermissionsGranted()) {
+                        val galleryIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                        startActivityForResult(galleryIntent, CAMERA)
+                    }
+                }
+                override fun onPermissionRationaleShouldBeShown(
+                    permissions: MutableList<PermissionRequest>?,
+                    token: PermissionToken?
+                ) {
+                    showRationalDialogForPermissions()
+                }
+            }).onSameThread().check()
     }
 
     //Dexter 3rd party permission library
@@ -131,6 +150,9 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                         ).show()
                     }
                 }
+            }else if (requestCode == CAMERA) {
+                val thumbnail = data!!.extras!!.get("data") as Bitmap
+                binding.ivPlaceImage.setImageBitmap(thumbnail)
             }
         }
     }
@@ -163,6 +185,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
     companion object {
         private const val GALLERY = 1
+        private const val CAMERA = 2
     }
 
 }
