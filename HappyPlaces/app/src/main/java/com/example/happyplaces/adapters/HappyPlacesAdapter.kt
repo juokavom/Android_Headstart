@@ -25,25 +25,12 @@ open class HappyPlacesAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = list[position]
-
         if(holder is MyViewHolder) holder.bind(model)
-
-//        if (holder is MyViewHolder) {
-//            holder.ivPlaceImage.setImageURI(Uri.parse(model.image))
-//            holder.tvTitle.text = model.title
-//            holder.tvDescription.text = model.description
-//        }
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
-//
-//    private class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-//        val ivPlaceImage = view.findViewById(R.id.iv_place_image) as CircleImageView
-//        val tvTitle = view.findViewById(R.id.tvTitle) as TextView
-//        val tvDescription = view.findViewById(R.id.tvDescription) as TextView
-//    }
 
     class MyViewHolder(private val binding: ItemHappyPlaceBinding) : RecyclerView.ViewHolder(binding.root) {
 

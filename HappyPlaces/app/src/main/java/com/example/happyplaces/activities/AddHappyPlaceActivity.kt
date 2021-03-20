@@ -52,6 +52,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
             cal.set(Calendar.YEAR, year)
             cal.set(Calendar.MONTH, month)
             cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            updateDateInView()
         }
         updateDateInView()
         binding.etDate.setOnClickListener(this)
@@ -113,8 +114,9 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                         val dbHandler = DatabaseHandler(this)
                         val addHappyPlace = dbHandler.addHappyPlace(happyPlaceModel)
 
+                        //if greater than 0 then insertion successfull
                         if(addHappyPlace > 0){
-                            Toast.makeText(this, "The happy place details are inserted successfully", Toast.LENGTH_SHORT).show()
+                            setResult(Activity.RESULT_OK)
                             finish()
                         }
                     }
