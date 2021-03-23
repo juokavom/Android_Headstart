@@ -10,6 +10,7 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/NoActionBar">
+        <activity android:name=".SignUpActivity" />
         <activity android:name=".IntroActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
