@@ -9,6 +9,8 @@ import android.view.WindowManager
 import android.widget.Toast
 import com.example.projemanag.R
 import com.example.projemanag.databinding.ActivitySignInBinding
+import com.example.projemanag.firebase.FirestoreClass
+import com.example.projemanag.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -39,7 +41,7 @@ class SignInActivity : BaseActivity() {
 
     private fun signInRegisteredUser() {
         val email: String = binding.etEmail.text.toString().trim { it <= ' ' }
-        val password: String = binding.etEmail.text.toString().trim { it <= ' ' }
+        val password: String = binding.etPassword.text.toString().trim { it <= ' ' }
 
         if (validateForm(email, password)) {
             showProgressDialog(getString(R.string.please_wait))
@@ -49,7 +51,7 @@ class SignInActivity : BaseActivity() {
                     if (task.isSuccessful) {
                         Log.d("Sign in", "signInWithEmail:success")
                         val user = auth.currentUser
-                        startActivity(Intent(this, MainActivity::class.java))
+                        FirestoreClass().signInUser(this)
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w("Sign in", "signInWithEmail:failure", task.exception)
@@ -72,6 +74,12 @@ class SignInActivity : BaseActivity() {
             }
             else -> true
         }
+    }
+
+    fun signInSuccess(user: User) {
+        hideProgressDialog()
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
     private fun setUpActionBar() {

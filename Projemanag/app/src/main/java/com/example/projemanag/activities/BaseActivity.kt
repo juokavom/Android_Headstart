@@ -62,4 +62,11 @@ open class BaseActivity : AppCompatActivity() {
         val snackBarView = snackBar.view
         snackBarView.setBackgroundColor(ContextCompat.getColor(this, R.color.snackbar_error_color))
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if(mProgressDialog != null){
+            mProgressDialog.dismiss()
+        }
+    }
 }
