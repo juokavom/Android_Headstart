@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.text.TextUtils
 import android.util.Log
+import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -23,10 +24,16 @@ open class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_base)
+
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
+
+        mProgressDialog = Dialog(this)
     }
 
     fun showProgressDialog(text: String) {
-        mProgressDialog = Dialog(this)
         mProgressDialog.setContentView(R.layout.dialog_progress)
         mProgressDialog.findViewById<TextView>(R.id.tv_progress_text).text = text
         mProgressDialog.show()

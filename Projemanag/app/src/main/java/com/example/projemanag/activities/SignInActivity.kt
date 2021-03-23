@@ -27,11 +27,6 @@ class SignInActivity : BaseActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
-
         binding.btnSignIn.setOnClickListener {
             signInRegisteredUser()
         }

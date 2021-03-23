@@ -21,11 +21,6 @@ class SignUpActivity : BaseActivity() {
         setContentView(binding.root)
         setUpActionBar()
 
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
-
         binding.btnSignUp.setOnClickListener {
             registerUser(binding)
         }
