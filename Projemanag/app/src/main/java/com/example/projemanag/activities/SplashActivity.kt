@@ -1,14 +1,11 @@
-package com.example.projemanag
+package com.example.projemanag.activities
 
 import android.content.Intent
 import android.graphics.Typeface
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.view.WindowInsets
 import android.view.WindowManager
-import androidx.annotation.RequiresApi
 import com.example.projemanag.databinding.ActivitySplashBinding
 
 class SplashActivity : AppCompatActivity() {
@@ -18,13 +15,10 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        Api < 30
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
-//        Api >= 30
-//        window.insetsController?.hide(WindowInsets.Type.statusBars())
 
 
         val typeFace: Typeface = Typeface.createFromAsset(assets, "carbon bl.ttf")

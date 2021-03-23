@@ -10,16 +10,18 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/NoActionBar">
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".IntroActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name=".activities.BaseActivity"></activity>
+        <activity android:name=".activities.SignInActivity" />
+        <activity android:name=".activities.SignUpActivity" />
+        <activity android:name=".activities.IntroActivity" />
+        <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".activities.MainActivity" />
     </application>
 
 </manifest>
