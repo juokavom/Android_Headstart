@@ -1,10 +1,7 @@
 package com.example.projemanag.firebase
 
 import android.util.Log
-import com.example.projemanag.activities.BaseActivity
-import com.example.projemanag.activities.MainActivity
-import com.example.projemanag.activities.SignInActivity
-import com.example.projemanag.activities.SignUpActivity
+import com.example.projemanag.activities.*
 import com.example.projemanag.models.User
 import com.example.projemanag.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -24,7 +21,7 @@ class FirestoreClass {
             }
     }
 
-    fun signInUser(activity: BaseActivity) {
+    fun loadUserData(activity: BaseActivity) {
         mFireStore.collection(Constants.USERS)
             .document(getCurrentUserId()).get()
             .addOnSuccessListener {document ->
@@ -36,6 +33,9 @@ class FirestoreClass {
                     }
                     is MainActivity -> {
                         activity.updateNavigationUserDetails(loggedInUser)
+                    }
+                    is MyProfileActivity -> {
+                        activity.setUserDataInUI(loggedInUser)
                     }
                 }
             }.addOnFailureListener {

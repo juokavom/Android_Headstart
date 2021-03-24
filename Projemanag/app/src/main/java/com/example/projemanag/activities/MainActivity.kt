@@ -1,19 +1,13 @@
 package com.example.projemanag.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.widget.TextView
-import android.widget.Toast
-import android.widget.Toolbar
 import androidx.core.view.GravityCompat
 import com.bumptech.glide.Glide
 import com.example.projemanag.R
 import com.example.projemanag.databinding.ActivityMainBinding
-import com.example.projemanag.databinding.AppBarMainBinding
-import com.example.projemanag.databinding.NavHeaderMainBinding
 import com.example.projemanag.firebase.FirestoreClass
 import com.example.projemanag.models.User
 import com.google.android.material.navigation.NavigationView
@@ -32,7 +26,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         binding.navView.setNavigationItemSelectedListener(this)
 
-        FirestoreClass().signInUser(this@MainActivity)
+        FirestoreClass().loadUserData(this@MainActivity)
     }
 
     private fun setupActionBar() {
