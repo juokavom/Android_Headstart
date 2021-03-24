@@ -37,13 +37,12 @@ class SignUpActivity : BaseActivity() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         val firebaseUser: FirebaseUser = task.result!!.user!!
-                        val registeredEmail = firebaseUser.email!!
-                        val user = User(firebaseUser.uid, name, email)
-                        FirestoreClass().registerUser(this, user)
+                        val user = User(firebaseUser.uid, name, firebaseUser.email!!)
+                        FirestoreClass().registerUser(this@SignUpActivity, user)
                     } else {
                         Toast.makeText(
-                            this, "Registration failed",
-                            Toast.LENGTH_SHORT
+                            this@SignUpActivity, task.exception!!.message,
+                            Toast.LENGTH_LONG
                         ).show()
                     }
                 }

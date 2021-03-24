@@ -40,7 +40,7 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     fun hideProgressDialog() {
-        mProgressDialog.hide()
+        mProgressDialog.dismiss()
     }
 
     fun getCurrentUserID(): String {
@@ -70,10 +70,4 @@ open class BaseActivity : AppCompatActivity() {
         snackBarView.setBackgroundColor(ContextCompat.getColor(this, R.color.snackbar_error_color))
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        if(mProgressDialog != null){
-            mProgressDialog.dismiss()
-        }
-    }
 }

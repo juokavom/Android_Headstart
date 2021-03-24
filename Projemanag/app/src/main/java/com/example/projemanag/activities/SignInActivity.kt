@@ -16,8 +16,6 @@ import com.google.firebase.auth.FirebaseUser
 
 class SignInActivity : BaseActivity() {
 
-    private lateinit var auth: FirebaseAuth
-
     private lateinit var binding: ActivitySignInBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +23,6 @@ class SignInActivity : BaseActivity() {
         setContentView(binding.root)
         setUpActionBar()
 
-        auth = FirebaseAuth.getInstance()
 
         binding.btnSignIn.setOnClickListener {
             signInRegisteredUser()
@@ -40,12 +37,10 @@ class SignInActivity : BaseActivity() {
 
         if (validateForm(email, password)) {
             showProgressDialog(getString(R.string.please_wait))
-            auth.signInWithEmailAndPassword(email, password)
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
-                    hideProgressDialog()
                     if (task.isSuccessful) {
                         Log.d("Sign in", "signInWithEmail:success")
-                        val user = auth.currentUser
                         FirestoreClass().signInUser(this)
                     } else {
                         // If sign in fails, display a message to the user.
@@ -73,7 +68,7 @@ class SignInActivity : BaseActivity() {
 
     fun signInSuccess(user: User) {
         hideProgressDialog()
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this@SignInActivity, MainActivity::class.java))
         finish()
     }
 
